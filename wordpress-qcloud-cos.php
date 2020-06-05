@@ -17,6 +17,11 @@ use Qcloud\Cos\Exception\ServiceResponseException;
 define('COS_VERSION', "1.8.3");
 define('COS_BASEFOLDER', plugin_basename(dirname(__FILE__)));
 
+add_action('plugins_loaded', 'SyncQCloudCOS_translate');
+function SyncQCloudCOS_translate() {
+    load_plugin_textdomain( 'SyncQCloudCOS', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+}
+
 // 初始化选项
 register_activation_hook(__FILE__, 'cos_set_options');
 // 初始化选项
@@ -574,15 +579,15 @@ function cos_setting_page()
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     ?>
     <div class="wrap" style="margin: 10px;">
-        <h1>腾讯云 COS 设置 <span style="font-size: 13px;">当前版本：<?php echo COS_VERSION; ?></span></h1>
-        <p>优惠促销： <a href="https://qq52o.me/welfare.html#qcloud" target="_blank">腾讯云优惠</a> / <a href="https://go.qq52o.me/a/cos" target="_blank">腾讯云COS资源包优惠</a>；</p>
-        <p>限时推广： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=cqidlih5bagj" target="_blank">技术博客可以加入腾讯云云+社区定制周边礼品等你来拿</a> / <a href="//shang.qq.com/wpa/qunwpa?idkey=c7f4fbd7ef84184555dfb6377d8ae087b3d058d8eeae1ff8e2da25c00d53173f" target="_blank">欢迎加入云存储插件交流群,QQ群号:887595381</a>；</p>
+        <h1><?php _e("QCloud COS Setting", "SyncQCloudCOS") ?> <span style="font-size: 13px;"><?php _e("Current Version：", "SyncQCloudCOS") ?><?php echo COS_VERSION; ?></span></h1>
+        <p><?php _e("Concessionary Activities：", "SyncQCloudCOS") ?><a href="https://qq52o.me/welfare.html#qcloud" target="_blank">腾讯云优惠</a> / <a href="https://go.qq52o.me/a/cos" target="_blank">腾讯云COS资源包优惠</a>；</p>
+        <p><?php _e("Time-limited Promotion：", "SyncQCloudCOS") ?><a href="https://cloud.tencent.com/developer/support-plan?invite_code=cqidlih5bagj" target="_blank">技术博客可以加入腾讯云云+社区定制周边礼品等你来拿</a> / <a href="//shang.qq.com/wpa/qunwpa?idkey=c7f4fbd7ef84184555dfb6377d8ae087b3d058d8eeae1ff8e2da25c00d53173f" target="_blank">欢迎加入云存储插件交流群,QQ群号:887595381</a>；</p>
         <hr/>
         <form name="form1" method="post" action="<?php echo wp_nonce_url('./options-general.php?page=' . COS_BASEFOLDER . '/wordpress-qcloud-cos.php'); ?>">
             <table class="form-table">
                 <tr>
                     <th>
-                        <legend>存储桶名称</legend>
+                        <legend><?php _e("Bucket Name", "SyncQCloudCOS") ?></legend>
                     </th>
                     <td>
                         <input type="text" name="bucket" value="<?php echo $cos_bucket; ?>" size="50" placeholder="请填写存储桶名称"/>
@@ -592,7 +597,7 @@ function cos_setting_page()
                 </tr>
                 <tr>
                     <th>
-                        <legend>存储桶地域</legend>
+                        <legend><?php _e("Bucket Regional", "SyncQCloudCOS") ?></legend>
                     </th>
                     <td><select name="regional">
                             <option value="ap-beijing-1" <?php if ($cos_regional == 'tj' || $cos_regional == 'ap-beijing-1') {echo ' selected="selected"';}?>>北京一区（华北）</option>
