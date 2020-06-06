@@ -13,7 +13,7 @@ msgstr ""
 "Language: zh_CN\n"
 
 #: wordpress-qcloud-cos.php:577
-msgid "Qcloud COS Setting"
+msgid "QCloud COS Setting"
 msgstr "腾讯云 COS 设置"
 
 #: wordpress-qcloud-cos.php:577

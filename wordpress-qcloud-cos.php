@@ -480,7 +480,7 @@ function cos_setting_post_thumbnail_ci( $html, $post_id, $post_image_id )
 // 在导航栏“设置”中添加条目
 function cos_add_setting_page()
 {
-    add_options_page('腾讯云COS设置', '腾讯云COS设置', 'manage_options', __FILE__, 'cos_setting_page');
+    add_options_page(__("QCloud COS Setting", "SyncQCloudCOS"), __("QCloud COS Setting", "SyncQCloudCOS"), 'manage_options', __FILE__, 'cos_setting_page');
 }
 
 add_action('admin_menu', 'cos_add_setting_page');
